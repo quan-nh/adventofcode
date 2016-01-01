@@ -1,4 +1,4 @@
-(ns adventofcode.core)
+(ns adventofcode.day1)
 
 (defn day1-floor [s]
   (let [up (->> s
