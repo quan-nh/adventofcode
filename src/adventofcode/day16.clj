@@ -7,16 +7,16 @@
   (line-seq (io/reader (io/resource "day16"))))
 
 (def ticker-tape
-  {(symbol "children")    3
-   (symbol "cats")        7
-   (symbol "samoyeds")    2
-   (symbol "pomeranians") 3
-   (symbol "akitas")      0
-   (symbol "vizslas")     0
-   (symbol "goldfish")    5
-   (symbol "trees")       3
-   (symbol "cars")        2
-   (symbol "perfumes")    1})
+  {'children    3
+   'cats        7
+   'samoyeds    2
+   'pomeranians 3
+   'akitas      0
+   'vizslas     0
+   'goldfish    5
+   'trees       3
+   'cars        2
+   'perfumes    1})
 
 (defn string->map [compounds]
   (read-string (str "{"
@@ -27,26 +27,26 @@
   (subset? (set a) (set b)))
 
 (defn match? [a]
-  (and (or (nil? (a (symbol "children")))
-           (= 3 (a (symbol "children"))))
-       (or (nil? (a (symbol "cats")))
-           (> (a (symbol "cats")) 7))
-       (or (nil? (a (symbol "samoyeds")))
-           (= 2 (a (symbol "samoyeds"))))
-       (or (nil? (a (symbol "pomeranians")))
-           (< (a (symbol "pomeranians")) 3))
-       (or (nil? (a (symbol "akitas")))
-           (= 0 (a (symbol "akitas"))))
-       (or (nil? (a (symbol "vizslas")))
-           (= 0 (a (symbol "vizslas"))))
-       (or (nil? (a (symbol "goldfish")))
-           (< (a (symbol "goldfish")) 5))
-       (or (nil? (a (symbol "trees")))
-           (> (a (symbol "trees")) 3))
-       (or (nil? (a (symbol "cars")))
-           (= 2 (a (symbol "cars"))))
-       (or (nil? (a (symbol "perfumes")))
-           (= 1 (a (symbol "perfumes"))))))
+  (and (or (nil? (a 'children))
+           (= 3 (a 'children)))
+       (or (nil? (a 'cats))
+           (> (a 'cats) 7))
+       (or (nil? (a 'samoyeds))
+           (= 2 (a 'samoyeds)))
+       (or (nil? (a 'pomeranians))
+           (< (a 'pomeranians) 3))
+       (or (nil? (a 'akitas))
+           (= 0 (a 'akitas)))
+       (or (nil? (a 'vizslas))
+           (= 0 (a 'vizslas)))
+       (or (nil? (a 'goldfish))
+           (< (a 'goldfish) 5))
+       (or (nil? (a 'trees))
+           (> (a 'trees) 3))
+       (or (nil? (a 'cars))
+           (= 2 (a 'cars)))
+       (or (nil? (a 'perfumes))
+           (= 1 (a 'perfumes)))))
 
 (def sues
   (->> input
