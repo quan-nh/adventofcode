@@ -6,7 +6,7 @@
     [clojure.string :as str]))
 
 (def input
-  (line-seq (io/reader (io/resource "day13"))))
+  (line-seq (io/reader (io/resource "2015/day13"))))
 
 (def happiness-map
   (->> input

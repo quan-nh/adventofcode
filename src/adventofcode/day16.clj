@@ -4,7 +4,7 @@
             [clojure.set :refer [subset?]]))
 
 (def input
-  (line-seq (io/reader (io/resource "day16"))))
+  (line-seq (io/reader (io/resource "2015/day16"))))
 
 (def ticker-tape
   {'children    3

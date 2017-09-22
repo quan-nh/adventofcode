@@ -3,7 +3,7 @@
             [clojure.string :as str]))
 
 (def input
-  (line-seq (io/reader (io/resource "day14"))))
+  (line-seq (io/reader (io/resource "2015/day14"))))
 
 (defn distance [reindeer seconds]
   (let [{:keys [speed time rest]} reindeer
