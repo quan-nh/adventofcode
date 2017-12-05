@@ -6,4 +6,6 @@
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [org.clojure/math.combinatorics "0.1.4"]
                  [org.clojure/core.match "0.3.0-alpha4"]
-                 [digest "1.4.5"]])
+                 [digest "1.4.5"]
+                 [criterium "0.4.4"]
+                 [primitive-math "0.1.6"]])
