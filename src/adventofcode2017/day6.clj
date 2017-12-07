@@ -8,18 +8,20 @@
                (mapv #(Integer/parseInt %))))
 
 (defn redistribute [blocks]
-  (let [len (count blocks)
-        val (apply max blocks)
+  (let [val (apply max blocks)
         pos (.indexOf blocks val)]
-    (reduce (fn [[blks n] idx]
-              (if (zero? n)
-                (reduced blks)
-                [(-> blks
-                     (update pos dec)
-                     (update idx inc))
-                 (dec n)]))
-            [blocks val]
-            (drop (inc pos) (cycle (range len))))))
+    (reduce #(update %1 %2 inc)
+            (assoc blocks pos 0)
+            (->> (cycle (range (count blocks)))
+                 (drop (inc pos))
+                 (take val)))))
+
+(take 5 (iterate redistribute [0 2 7 0]))
+;([0 2 7 0]
+; [2 4 1 2]
+; [3 1 2 3]
+; [0 2 3 4]
+; [1 3 4 1])
 
 ;; part 1
 (reduce (fn [r i]
