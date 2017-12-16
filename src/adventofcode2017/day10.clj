@@ -29,11 +29,25 @@
 ; 6909
 
 ;; part 2
-(def lengths-part2 (conj (mapv int input) 17 31 73 47 23))
-(def hash-part2 (hash-fn lengths-part2))
-(let [[l _ _] (last (take 65 (iterate hash-part2 [(range n) 0 0])))]
-  (->> (partition 16 l)
-       (map #(apply bit-xor %))
-       (map #(format "%02x" %))
-       (apply str)))
+(defn knot-hashes [s]
+  (let [lengths (conj (mapv int s) 17 31 73 47 23)
+        [l _ _] (last (take 65 (iterate (hash-fn lengths) [(range n) 0 0])))]
+    (->> (partition 16 l)
+         (map #(apply bit-xor %))
+         (map #(format "%02x" %))
+         (apply str))))
+
+(= "a2582a3a0e66e6e86e3812dcb672a272"
+   (knot-hashes ""))
+
+(= "33efeb34ea91902bb2f59c9920caa6cd"
+   (knot-hashes "AoC 2017"))
+
+(= "3efbe78a8d82f29979031a4aa0b16a9d"
+   (knot-hashes "1,2,3"))
+
+(= "63960835bcdc130f0b66d7ff4f6a5a8e"
+   (knot-hashes "1,2,4"))
+
+(knot-hashes input)
 ; 9d5f4561367d379cfbf04f8c471c0095
