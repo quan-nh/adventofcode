@@ -1,7 +1,7 @@
-(ns adventofcode2017.day9
+(ns adventofcode2017.day09
   (:require [clojure.java.io :as io]))
 
-(def input (slurp (io/resource "2017/day9")))
+(def input (slurp (io/resource "2017/day09")))
 
 (def data
   (loop [s input
