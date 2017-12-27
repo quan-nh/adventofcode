@@ -43,57 +43,53 @@
 ;;; (pop PQueue) -> but head
 ;;; (conj PQueue x) -> append
 
+(defn trips [graph start end max-stops]
+  ((fn bfs [queue ret]
+     (let [route (peek queue)
+           town (last route)
+           towns (children graph town)
+           routes (map #(conj route %) towns)]
+       (if (<= (count route) (inc max-stops))
+         (bfs (into (pop queue) routes)
+              (if (and (> (count route) 1) (= end town))
+                (conj ret route)
+                ret))
+         ret)))
+    (conj PersistentQueue/EMPTY [start])                    ; queue stores path
+    []))
+
 ;; number of trips starting at C and ending at C with a maximum of 3 stops
-(loop [ret 0
-       queue (conj PersistentQueue/EMPTY ["C"])]            ; queue stores path
-  (let [route (peek queue)
-        town (last route)
-        towns (children graph town)
-        routes (map #(conj route %) towns)]
-    (if (> (count route) 4)
-      ret
-      (recur (if (and (> (count route) 1) (= "C" town))
-               (inc ret)
-               ret)
-             (into (pop queue) routes)))))
+(count (trips graph "C" "C" 3))
 ; 2
 
 ;; number of trips starting at A and ending at C with exactly 4 stops
-(loop [ret 0
-       queue (conj PersistentQueue/EMPTY ["A"])]
-  (let [route (peek queue)
-        town (last route)
-        towns (children graph town)
-        routes (map #(conj route %) towns)]
-    (if (> (count route) 6)
-      ret
-      (recur (if (and (= (count route) 5) (= "C" town))
-               (inc ret)
-               ret)
-             (into (pop queue) routes)))))
+(->> (trips graph "A" "C" 4)
+     (filter #(= 5 (count %)))
+     count)
 ; 3
 
 (defn shortest-route
   "Length of the shortest route (in terms of distance to travel) from start to
   end."
   [graph start end]
-  (loop [ret Integer/MAX_VALUE
-         queue (conj PersistentQueue/EMPTY [start])]
-    (if (empty? queue)
-      ret
-      (let [route (peek queue)
-            town (last route)
-            towns (children graph town)
-            routes (map #(conj route %) towns)]
-        (cond
-          (and (> (count route) 1) (= end town))
-          (recur (min ret (distance graph route)) (pop queue))
+  ((fn bfs [queue ret]
+     (if (seq queue)
+       (let [route (peek queue)
+             town (last route)
+             towns (children graph town)
+             routes (map #(conj route %) towns)]
+         (cond
+           (and (> (count route) 1) (= end town))
+           (bfs (pop queue) (min ret (distance graph route)))
 
-          (> (distance graph route) ret)
-          (recur ret (pop queue))
+           (> (distance graph route) ret)
+           (bfs (pop queue) ret)
 
-          :else
-          (recur ret (into (pop queue) routes)))))))
+           :else
+           (bfs (into (pop queue) routes) ret)))
+       ret))
+    (conj PersistentQueue/EMPTY [start])
+    Integer/MAX_VALUE))
 
 (shortest-route graph "A" "C")
 ; 9
@@ -101,8 +97,8 @@
 ; 9
 
 ;; number of different routes from C to C with a distance of less than 30
-(loop [ret 0
-       queue (conj PersistentQueue/EMPTY ["C"])]
+(loop [queue (conj PersistentQueue/EMPTY ["C"])
+       ret 0]
   (if (empty? queue)
     ret
     (let [route (peek queue)
