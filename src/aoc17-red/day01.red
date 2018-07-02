@@ -14,10 +14,6 @@ comment {
 
 digits: read %../../resources/2017/day1
 
-char->int: func [ch][
-  to integer! form ch
-]
-
 sum: 0
 
 forall digits [
@@ -27,7 +23,7 @@ forall digits [
   a: first digits
   b: first next-digits 
 
-  if a = b [sum: sum + char->int a]
+  if a = b [sum: sum + to-integer form a]
 ]
 
 print sum
@@ -55,7 +51,7 @@ forall digits [
   a: first digits
   b: first next-digits 
 
-  if a = b [sum: sum + char->int a]
+  if a = b [sum: sum + to-integer form a]
 
   next-digits: next next-digits
   if tail? next-digits [next-digits: head digits]
