@@ -4,7 +4,7 @@ input: read %../../resources/2017/day09
 
 st: []
 score: 0
-result: 0
+level: 0
 count: 0
 while [not tail? input] [
   ch: first input
@@ -19,13 +19,13 @@ while [not tail? input] [
       switch ch [
         #"{" [
           append st ch
-          score: score + 1
+          level: level + 1
         ]
 
         #"}" [
-          result: result + score
+          score: score + level
           take/last st
-          score: score - 1
+          level: level - 1
         ]
 
         #"<" [append st ch]
@@ -36,7 +36,7 @@ while [not tail? input] [
   input: next input
 ]
 
-print result
+print score
 ; 14204
 print count
 ; 6622
