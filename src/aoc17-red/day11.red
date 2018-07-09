@@ -5,24 +5,23 @@ Red [
 input: split read %../../resources/2017/day11 ","
 
 move: function [pos dir][
-  switch dir [
-    "n"  [reduce [pos/1 (pos/2 + 1) (pos/3 - 1)]]
-    "ne" [reduce [(pos/1 + 1) pos/2 (pos/3 - 1)]]
-    "se" [reduce [(pos/1 + 1) (pos/2 -1) pos/3]]
-    "s"  [reduce [pos/1 (pos/2 -1) (pos/3 + 1)]]
-    "sw" [reduce [(pos/1 - 1) pos/2 (pos/3 + 1)]]
-    "nw" [reduce [(pos/1 - 1) (pos/2 + 1) pos/3]]
+  cases: [
+    "n"  [0 1 -1]
+    "ne" [1 0 -1]
+    "se" [1 -1 0]
+    "s"  [0 -1 1]
+    "sw" [-1 0 1]
+    "nw" [-1 1 0]
   ]
+
+  pos + make vector! select cases dir
 ]
 
 steps: function [pos] [
-  result: 0
-  foreach x pos [
-    result: max result absolute x
-  ]
+  max max absolute pos/1 absolute pos/2 absolute pos/3
 ]
 
-pos: copy [0 0 0]
+pos: make vector! [0 0 0]
 max-steps: 0
 
 foreach dir input [

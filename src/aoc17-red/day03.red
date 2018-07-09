@@ -25,22 +25,22 @@ How many steps are required to carry the data from the square identified in your
 
 input: 325489
 
-north: [0 1]
-east: [1 0]
-south: [0 -1]
-west: [-1 0]
+north: 0x1
+east: 1x0
+south: 0x-1
+west: -1x0
 
 direction: reduce [east north west south]
 
 i: 1
 n: 1
-pos: [0 0]
+pos: 0x0
 forever [
   loop 2 [
     loop i [
       n: n + 1
       dir: first direction
-      pos: reduce [pos/1 + dir/1  pos/2 + dir/2]
+      pos: pos + dir
 
       if n = input [break]
     ]
@@ -54,5 +54,5 @@ forever [
   i: i + 1
 ]
 
-print (absolute pos/1) + (absolute pos/2)
+print (absolute pos/x) + (absolute pos/y)
 ; 552
