@@ -2,30 +2,24 @@ Red [
   url: https://www.codewars.com/kata/stop-gninnips-my-sdrow
 ]
 
-parser: context [
+spin-words: function [s] [
   letters: charset [#"a" - #"z" #"A" - #"Z"]
   word:    [some letters]
 
-  spin-words: function [s] [
-    parse s [
-      some [pos1: word pos2: (l: (index? pos2) - (index? pos1)
-                              if l >= 5 [
-                                sub: copy/part pos1 l
-                                change pos1 reverse sub
-                              ])
-            | space]
-    ]
+  parse s [
+    some [copy w p: word (if (length? w) >= 5 [change p reverse w])
+          [space | end]]
   ]
 ]
 
 s: "Hey fellow warriors"
-parser/spin-words s
+spin-words s
 print s = "Hey wollef sroirraw"
 
 s: "This is a test"
-parser/spin-words s
+spin-words s
 print s = "This is a test"
 
 s: "This is another test"
-parser/spin-words s
+spin-words s
 print s = "This is rehtona test"
