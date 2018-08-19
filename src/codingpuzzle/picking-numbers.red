@@ -5,7 +5,7 @@ Red [
 picking-numbers: function [a] [
   sort a
   p: copy reduce [first a none]
-  len: copy [1 0]
+  len: 1x0
   max-len: 1
   foreach i next a [
     switch/default i - p/1 [
@@ -18,7 +18,7 @@ picking-numbers: function [a] [
         len/1: len/2 len/2: 1
       ] [
         p/1: i p/2: none
-        len/1: 1 len/2: 0
+        len: 1x0
       ]
     ]
   ]
