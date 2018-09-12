@@ -1,4 +1,5 @@
-(ns codingpuzzle.queen-of-school)
+(ns codingpuzzle.queen-of-school
+  (:require [clojure.test :refer :all]))
 
 (defn queen-of-school [votes]
   (let [count-votes (frequencies votes)
@@ -10,4 +11,8 @@
          sort
          last)))
 
-(queen-of-school ["Laura", "Emily", "Louise", "Natasha", "Emily", "Lilly", "Louise", "Laura", "Mary", "Mary"])
+(deftest test-queen-of-school
+  (is (= "Mary"
+         (queen-of-school ["Laura", "Emily", "Louise", "Natasha", "Emily", "Lilly", "Louise", "Laura", "Mary", "Mary"]))))
+
+(run-tests)
