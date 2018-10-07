@@ -50,5 +50,7 @@ find-singer: function [n s][
 probe find-singer 10 3
 probe find-singer 3 2
 probe find-singer 3 3
+probe find-singer 3 10
+
 ;find-singer 10 2
 ;probe skip-circle skip [1 2 4 5 7 8 10] 6 2
