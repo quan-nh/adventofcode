@@ -46,17 +46,17 @@
 (defn path-to [goal]
   (fn dfs [path result stack]
     (if (empty? stack) result
-                       (let [[[node level] remain] (peek stack)
-                             new-result (if (differ? (last path) goal)
-                                          (conj result (conj path goal))
-                                          result)]
-                         (if (= (inc (count path)) level)
-                           (dfs (conj path node)
-                                new-result
-                                (apply conj (pop stack) (next-nodes node level remain)))
-                           (dfs (pop path)
-                                new-result
-                                stack))))))
+        (let [[[node level] remain] (peek stack)
+              new-result (if (differ? (last path) goal)
+                           (conj result (conj path goal))
+                           result)]
+          (if (= (inc (count path)) level)
+            (dfs (conj path node)
+                 new-result
+                 (apply conj (pop stack) (next-nodes node level remain)))
+            (dfs (pop path)
+                 new-result
+                 stack))))))
 
 (defn word-ladder [start goal words]
   ((path-to goal) [] #{} [[[start 1] words]]))
