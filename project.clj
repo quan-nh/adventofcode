@@ -6,6 +6,7 @@
   :dependencies [[org.clojure/clojure "1.10.0-beta6"]
                  [org.clojure/math.combinatorics "0.1.4"]
                  [org.clojure/core.match "0.3.0-alpha4"]
+                 [net.cgrand/xforms "0.18.2"]
                  [com.rpl/specter "1.1.1"]
                  [instaparse "1.4.8"]
                  [digest "1.4.5"]
