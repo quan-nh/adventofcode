@@ -1,4 +1,4 @@
-Red []
+Red [url: https://adventofcode.com/2018/day/1]
 
 input: read/lines %../../resources/2018/day01
 
