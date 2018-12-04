@@ -1,21 +1,16 @@
 Red [url: https://adventofcode.com/2018/day/1]
 
-input: read/lines %../../resources/2018/day01
+input: load %../../resources/2018/day01
 
 ; part 1
-result: 0
-foreach freq input [
-  result: result + to integer! freq
-]
-
-probe result ; 470
+probe sum input ; 470
 
 ; part 2
 result: 0
 list: make hash! [0]
 duplicate: false
 
-forever [
+until [
   foreach freq input [
     result: result + to integer! freq
     either find list result [
@@ -24,7 +19,7 @@ forever [
       append list result
     ]
   ]
-  if duplicate [break]
+  duplicate
 ]
 
 probe result ; 790
