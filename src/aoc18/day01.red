@@ -12,7 +12,7 @@ duplicate: false
 
 until [
   foreach freq input [
-    result: result + to integer! freq
+    result: result + freq
     either find list result [
       duplicate: true break
     ][
