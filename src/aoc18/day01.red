@@ -1,9 +1,9 @@
-Red [url: https://adventofcode.com/2018/day/1]
+Red []
 
 input: load %../../resources/2018/day01
 
 ; part 1
-probe sum input ; 470
+print sum input ; 470
 
 ; part 2
 result: 0
@@ -22,4 +22,4 @@ until [
   duplicate
 ]
 
-probe result ; 790
+print result ; 790
