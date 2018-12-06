@@ -31,8 +31,7 @@ m: make hash! []
 foreach [id x y width height] claims [
   foreach i x .. (x + width - 1) [
     foreach j y .. (y + height - 1) [
-      square: as-pair i j
-      either n: find m square [
+      either n: find m square: as-pair i j [
         append n/2 id
       ] [
         append m square  
