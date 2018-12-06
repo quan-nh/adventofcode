@@ -1,12 +1,13 @@
 Red []
 
 input: read/lines %../../resources/2018/day02
-;input: ["abcdef" "bababc" "abbcde" "abcccd" "aabcdd" "abcdee" "ababab"]
+
+; part 1
 frequency: function [s] [
   result: copy []
   foreach ch s [
     either freq: find result ch [
-      change next freq freq/2 + 1
+      freq/2: freq/2 + 1
     ] [
       repend result [ch 1] 
     ]
@@ -24,4 +25,35 @@ foreach s input [
   ]
 ]
 
-print twos * threes
+print twos * threes ; 3952
+
+; part 2
+common-letters: function [s1 s2] [
+  result: copy ""
+  no-diff: 0
+  repeat i length? s1 [
+    either s1/:i = s2/:i [
+      append result s1/:i
+    ] [
+      no-diff: no-diff + 1
+    ]
+    if no-diff > 1 [result: none break]
+  ]
+  either zero? no-diff [none] [result]
+]
+
+l: length? input
+repeat i l [
+  j: 1 done?: no
+  until [
+    if result: common-letters input/:i input/:j [
+      print result
+      done?: yes
+      break
+    ]
+    j: j + 1
+    i + j = l
+  ]
+  if done? [break]
+]
+;vtnikorkulbfejvyznqgdxpaw
