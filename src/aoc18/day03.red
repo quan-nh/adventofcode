@@ -1,5 +1,7 @@
 Red []
 
+do https://raw.githubusercontent.com/tentamen/red-utils/master/range.red
+
 input: read/lines %../../resources/2018/day03
 
 digit: charset "0123456789"
@@ -16,21 +18,19 @@ foreach line input [
     ","
     copy y some digit (y: to integer! y)
     ":" space
-    copy w some digit (w: to integer! w)
+    copy width some digit (width: to integer! width)
     "x"
-    copy h some digit (h: to integer! h)
-    (repend claims [id x y w h])
+    copy height some digit (height: to integer! height)
+    (repend claims [id x y width height])
   ]
 ]
 
 ; part 1
 m: make hash! []
 
-foreach [id x y w h] claims [
-  i: x
-  while [i < (x + w)] [
-    j: y
-    while [j < (y + h)] [
+foreach [id x y width height] claims [
+  foreach i x .. (x + width - 1) [
+    foreach j y .. (y + height - 1) [
       square: as-pair i j
       either n: find m square [
         append n/2 id
@@ -38,9 +38,7 @@ foreach [id x y w h] claims [
         append m square  
         repend/only m [id]
       ]
-      j: j + 1
-    ]  
-    i: i + 1  
+    ]
   ]
 ]
 
