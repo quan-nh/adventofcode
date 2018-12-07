@@ -40,15 +40,15 @@ overlaps: make hash! []
 foreach [id x y width height] claims [
   foreach i x .. (x + width - 1) [
     foreach j y .. (y + height - 1) [
-      inch: as-pair i j
-      add-item m inch id
-      ids: select m inch
-      foreach item ids [
-        if id <> item [
+      square: as-pair i j
+      if ids: select m square [
+        foreach item ids [
           add-item overlaps item id
           add-item overlaps id item
         ]
       ]
+
+      add-item m square id
     ]
   ]
 ]
