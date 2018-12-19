@@ -1,19 +1,18 @@
 #include <iostream>
-#include <string>
 #include <fstream>
 #include <streambuf>
 #include <stack>
 
 using namespace std;
 
-bool isPair(char a, char b) {
+bool isPair(const char &a, const char &b) {
   return abs(a - b) == 32;
 }
 
-int part1(string s) {
+int part1(const string &s) {
   stack<char> st;
 
-  int i=0, count = 0;
+  int i = 0, count = 0;
   while(s[i] != '\n'){
     if(st.empty() || !isPair(s[i], st.top())) {
       st.push(s[i]);
@@ -28,10 +27,10 @@ int part1(string s) {
   return count;
 }
 
-int part2(string s, char ch) {
+int part2(const string &s, const char &ch) {
   stack<char> st;
 
-  int i=0, count = 0;
+  int i = 0, count = 0;
   while(s[i] != '\n'){
     if(s[i] == ch || s[i] == ch - 32) {
       i++; continue;
