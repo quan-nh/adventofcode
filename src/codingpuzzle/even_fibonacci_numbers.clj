@@ -1,6 +1,0 @@
-(->> (iterate (fn [[x y]] [y (+ x y)]) [1 1])
-     (map first)
-     (take-while #(< % 4000000))
-     (filter even?)
-     (reduce +)
-     print)
