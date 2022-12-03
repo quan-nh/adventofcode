@@ -14,5 +14,5 @@ for calo in readFile("../../resources/2022/day01").splitLines:
       t3 = total
     total = 0
 
-echo t1
-echo t1 + t2 + t3
+echo t1            # 69795
+echo t1 + t2 + t3  # 208437

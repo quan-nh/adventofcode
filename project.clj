@@ -1,7 +1,7 @@
 (defproject adventofcode "0.1.0-SNAPSHOT"
   :description "FIXME: write description"
   :url "http://example.com/FIXME"
-  :dependencies [[org.clojure/clojure "1.10.1"]
+  :dependencies [[org.clojure/clojure "1.11.1"]
                  [org.clojure/math.combinatorics "0.1.4"]
                  [org.clojure/core.match "0.3.0-alpha4"]
                  [net.cgrand/xforms "0.18.2"]
