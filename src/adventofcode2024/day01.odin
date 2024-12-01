@@ -10,7 +10,7 @@ main :: proc() {
 	x, y: [dynamic]int
 	defer {delete(x);delete(y)}
 
-	data, ok := os.read_entire_file("resources/2024/day01.txt")
+	data, ok := os.read_entire_file("resources/2024/day01-input.txt")
 	if !ok do return
 	defer delete(data)
 
