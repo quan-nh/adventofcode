@@ -22,3 +22,35 @@ Example calculation:
 - Total distance: 2+1+0+1+2+5 = 11
 
 The puzzle asks you to perform this calculation on the actual input lists to determine the total distance.
+
+--- Part Two ---
+
+The puzzle now focuses on calculating a "similarity score" between two lists of numbers. The process is as follows:
+
+For each number in the left list:
+
+- Count how many times that number appears in the right list
+- Multiply the number by its frequency in the right list
+- Add this product to a running total (similarity score)
+
+Key points:
+
+- Numbers that don't appear in the right list contribute 0 to the score
+- The score is calculated by multiplying each left list number by its frequency in the right list
+- The goal is to find the total similarity score
+
+Example calculation:
+
+- Left list: [3, 4, 2, 1, 3, 3]
+- Right list: [4, 3, 5, 3, 9, 3]
+- Breakdown:
+    - 3 appears 3 times in right list: 3 * 3 = 9
+    - 4 appears 1 time in right list: 4 * 1 = 4
+    - 2 appears 0 times in right list: 2 * 0 = 0
+    - 1 appears 0 times in right list: 1 * 0 = 0
+    - 3 appears 3 times in right list: 3 * 3 = 9
+    - 3 appears 3 times in right list: 3 * 3 = 9
+
+- Total similarity score: 9 + 4 + 0 + 0 + 9 + 9 = 31
+
+The puzzle asks you to calculate this similarity score for the actual input lists.

@@ -21,12 +21,44 @@ main :: proc() {
 		append(&y, strconv.atoi(s[1]))
 	}
 
-	slice.sort(x[:])
-	slice.sort(y[:])
+	part1_result := part1(x[:], y[:])
+	fmt.println(part1_result) // 1765812
+
+	part2_result := part2(x[:], y[:])
+	fmt.println(part2_result) // 20520794
+}
+
+part1 :: proc(x, y: []int) -> int {
+	slice.sort(x)
+	slice.sort(y)
 
 	result := 0
 	for i in 0 ..< len(x) {
 		result += abs(x[i] - y[i])
 	}
-	fmt.println(result) // 1765812
+
+	return result
+}
+
+part2 :: proc(x, y: []int) -> int {
+	m: map[int]int
+	defer delete(m)
+
+	result := 0
+	for i in x {
+		if freq, ok := m[i]; ok {
+			result += i * freq
+		} else {
+			freq := 0
+			for j in y {
+				if i == j {
+					freq += 1
+				}
+			}
+			result += i * freq
+			m[i] = freq
+		}
+	}
+
+	return result
 }
