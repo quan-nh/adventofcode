@@ -26,6 +26,8 @@ main :: proc() {
 
 	part2_result := part2(x[:], y[:])
 	fmt.println(part2_result) // 20520794
+
+	fmt.println(calculate_similarity_score(x[:], y[:])) // 20520794
 }
 
 part1 :: proc(x, y: []int) -> int {
@@ -61,4 +63,27 @@ part2 :: proc(x, y: []int) -> int {
 	}
 
 	return result
+}
+
+// solution by LLM part 2
+
+// Calculate similarity score
+calculate_similarity_score :: proc(left_list, right_list: []int) -> int {
+	// Count frequencies of numbers in the right list
+	frequencies := make(map[int]int)
+	defer delete(frequencies)
+
+	for num in right_list {
+		frequencies[num] += 1
+	}
+
+	// Calculate similarity score
+	total_score := 0
+	for num in left_list {
+		// Multiply number by its frequency (0 if not found)
+		frequency := frequencies[num] or_else 0
+		total_score += num * frequency
+	}
+
+	return total_score
 }
