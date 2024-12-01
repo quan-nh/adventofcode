@@ -7,27 +7,29 @@ import "core:strconv"
 import "core:strings"
 
 main :: proc() {
-	x, y: [dynamic]int
-	defer {delete(x);delete(y)}
-
 	data, ok := os.read_entire_file("resources/2024/day01-input.txt")
 	if !ok do return
 	defer delete(data)
 
-	it := string(data)
-	for line in strings.split_lines_iterator(&it) {
+	lines := strings.split_lines(strings.trim_right_space(string(data)))
+
+	x := make([]int, len(lines))
+	y := make([]int, len(lines))
+	defer {delete(x);delete(y)}
+
+	for line, idx in lines {
 		s := strings.split(line, "   ")
-		append(&x, strconv.atoi(s[0]))
-		append(&y, strconv.atoi(s[1]))
+		x[idx] = strconv.atoi(s[0])
+		y[idx] = strconv.atoi(s[1])
 	}
 
-	part1_result := part1(x[:], y[:])
+	part1_result := part1(x, y)
 	fmt.println(part1_result) // 1765812
 
-	part2_result := part2(x[:], y[:])
+	part2_result := part2(x, y)
 	fmt.println(part2_result) // 20520794
 
-	fmt.println(calculate_similarity_score(x[:], y[:])) // 20520794
+	fmt.println(calculate_similarity_score(x, y)) // 20520794
 }
 
 part1 :: proc(x, y: []int) -> int {
