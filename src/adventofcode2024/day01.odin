@@ -5,6 +5,7 @@ import "core:os"
 import "core:slice"
 import "core:strconv"
 import "core:strings"
+import "core:testing"
 
 main :: proc() {
 	data, ok := os.read_entire_file("resources/2024/day01-input.txt")
@@ -44,6 +45,14 @@ part1 :: proc(x, y: []int) -> int {
 	return result
 }
 
+@(test)
+part1_test :: proc(t: ^testing.T) {
+	x := []int{3, 4, 2, 1, 3, 3}
+	y := []int{4, 3, 5, 3, 9, 3}
+	result := part1(x, y)
+	testing.expect_value(t, result, 11)
+}
+
 part2 :: proc(x, y: []int) -> int {
 	m: map[int]int
 	defer delete(m)
@@ -67,9 +76,15 @@ part2 :: proc(x, y: []int) -> int {
 	return result
 }
 
-// solution by LLM part 2
+@(test)
+part2_test :: proc(t: ^testing.T) {
+	x := []int{3, 4, 2, 1, 3, 3}
+	y := []int{4, 3, 5, 3, 9, 3}
+	result := part2(x, y)
+	testing.expect_value(t, result, 31)
+}
 
-// Calculate similarity score
+// solution by LLM part 2
 calculate_similarity_score :: proc(left_list, right_list: []int) -> int {
 	// Count frequencies of numbers in the right list
 	frequencies := make(map[int]int)
@@ -88,4 +103,12 @@ calculate_similarity_score :: proc(left_list, right_list: []int) -> int {
 	}
 
 	return total_score
+}
+
+@(test)
+calculate_similarity_score_test :: proc(t: ^testing.T) {
+	x := []int{3, 4, 2, 1, 3, 3}
+	y := []int{4, 3, 5, 3, 9, 3}
+	result := calculate_similarity_score(x, y)
+	testing.expect_value(t, result, 31)
 }
