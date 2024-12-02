@@ -10,4 +10,4 @@ https://adventofcode.com
 - [2019 - 2/25](src/adventofcode2019)
 - [2022 - 2/25](src/adventofcode2022)
 - [2023 - 1/25](src/adventofcode2023)
-- [2024 - 1/25](src/adventofcode2024)
+- [2024 - 2/25](src/adventofcode2024)
