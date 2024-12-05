@@ -18,7 +18,7 @@
    - Sum up all the results
 
 5. Example:
-   In: `xmul(2,4)%&mul[3,7]!@^do_not_mul(5,5)+mul(32,64]then(mul(11,8)mul(8,5))`
+   In: `xmul(2,4)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](mul(11,8)do()?mul(8,5))`
    Only valid ones: `mul(2,4)`, `mul(5,5)`, `mul(11,8)`, `mul(8,5)`
    Sum: `(2*4) + (5*5) + (11*8) + (8*5) = 161`
 
